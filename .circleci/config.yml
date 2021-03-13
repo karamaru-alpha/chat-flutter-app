@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cirrusci/flutter:1.22.5
+    steps:
+      - checkout
+      - run:
+          name: Run flutter analyze
+          command: flutter analyze
