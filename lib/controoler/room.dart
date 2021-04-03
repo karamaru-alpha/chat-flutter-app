@@ -1,6 +1,6 @@
 import 'package:state_notifier/state_notifier.dart';
 
-import '../state/state.dart';
+import '../state/room.dart';
 import '../model/room.dart';
 
 class RoomController extends StateNotifier<RoomState> {
