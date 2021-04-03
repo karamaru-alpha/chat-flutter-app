@@ -1,6 +1,7 @@
 import '../model/room.dart';
 
 class RoomState {
+  // TODO: gRPCサーバーからの通信ができたら空配列に
   RoomState()
       : rooms = [
           Room(id: 1, title: "RoomA"),
