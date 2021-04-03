@@ -1,18 +1,32 @@
-import 'package:chat/model/room.dart';
+import 'package:chat/state/room.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-List<Room> rooms = [
-  Room(id: 1, title: "RoomA"),
-  Room(id: 2, title: "RoomB"),
-  Room(id: 3, title: "RoomC"),
-];
+import '../provider/index.dart';
+import 'add_room.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final RoomState roomState = useProvider(roomProvider.state);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("トークルーム"),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => AddRoomScreen(),
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
@@ -27,7 +41,7 @@ class HomeScreen extends StatelessWidget {
             child: ListTile(
               leading: const Icon(Icons.house),
               title: Text(
-                rooms[index].title,
+                roomState.rooms[index].title,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -36,7 +50,7 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         },
-        itemCount: rooms.length,
+        itemCount: roomState.rooms.length,
       ),
     );
   }
