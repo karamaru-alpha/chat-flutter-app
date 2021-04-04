@@ -30,6 +30,5 @@ Future<GetRoomsResponse> getRooms() async {
     debugPrint('getRooms: $error');
     await channel.shutdown();
     return Future.error(error);
-    ;
   }
 }
