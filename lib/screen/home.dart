@@ -19,10 +19,14 @@ class HomeScreen extends HookWidget {
     useEffect(
       () {
         (() async {
-          pb.GetRoomsResponse res = await getRooms();
-          roomController.setRooms(
-            res.rooms.map((e) => Room(id: e.id, title: e.title)).toList(),
-          );
+          try {
+            pb.GetRoomsResponse res = await getRooms();
+            roomController.setRooms(
+              res.rooms.map((e) => Room(id: e.id, title: e.title)).toList(),
+            );
+          } catch (e) {
+            return null;
+          }
         })();
 
         return;

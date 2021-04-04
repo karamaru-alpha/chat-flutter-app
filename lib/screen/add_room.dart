@@ -31,13 +31,17 @@ class AddRoomScreen extends HookWidget {
             ElevatedButton(
               child: const Text('作成！'),
               onPressed: () async {
-                pb.CreateRoomResponse res = await createRoom(
-                  title: title.value,
-                );
-                controller.addRoom(
-                  Room(id: res.room.id, title: res.room.title),
-                );
-                Navigator.of(context).pop();
+                try {
+                  pb.CreateRoomResponse res = await createRoom(
+                    title: title.value,
+                  );
+                  controller.addRoom(
+                    Room(id: res.room.id, title: res.room.title),
+                  );
+                  Navigator.of(context).pop();
+                } catch (e) {
+                  return null;
+                }
               },
             ),
           ],
