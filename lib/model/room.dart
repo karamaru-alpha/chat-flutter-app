@@ -6,6 +6,6 @@ class Room {
     @required this.title,
   });
 
-  int id;
+  String id;
   String title;
 }
