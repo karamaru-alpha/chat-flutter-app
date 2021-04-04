@@ -9,4 +9,8 @@ class RoomController extends StateNotifier<RoomState> {
   void setRooms(List<Room> v) {
     state = state..rooms = v;
   }
+
+  void addRoom(Room v) {
+    state = state..rooms.add(v);
+  }
 }
