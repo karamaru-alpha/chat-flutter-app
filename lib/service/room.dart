@@ -9,9 +9,9 @@ Future<CreateRoomResponse> createRoom({String title}) async {
   RoomServicesClient grpcClient = createGrpcClient(channel);
   try {
     return await grpcClient.createRoom(CreateRoomRequest(title: title));
-  } catch (error) {
-    debugPrint('createRoom: $error');
-    return Future.error(error);
+  } catch (e) {
+    debugPrint('createRoom: $e');
+    return Future.error(e);
   } finally {
     channel.shutdown();
   }
@@ -22,9 +22,9 @@ Future<GetRoomsResponse> getRooms() async {
   RoomServicesClient grpcClient = createGrpcClient(channel);
   try {
     return await grpcClient.getRooms(GetRoomsRequest());
-  } catch (error) {
-    debugPrint('getRooms: $error');
-    return Future.error(error);
+  } catch (e) {
+    debugPrint('getRooms: $e');
+    return Future.error(e);
   } finally {
     channel.shutdown();
   }
