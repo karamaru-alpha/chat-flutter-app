@@ -1,11 +1,12 @@
 import 'package:grpc/grpc.dart';
 
+import '../environment/index.dart';
 import '../proto/pb/room.pbgrpc.dart';
 
 ClientChannel createChannel() {
   return ClientChannel(
-    'localhost',
-    port: 8080,
+    Environment.HOST,
+    port: Environment.PORT,
     options: const ChannelOptions(
       credentials: ChannelCredentials.insecure(),
     ),
