@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: room.proto
+//  source: message.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
@@ -9,69 +9,10 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class Room extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Room', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'chatserver'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title')
-    ..hasRequiredFields = false
-  ;
-
-  Room._() : super();
-  factory Room({
-    $core.String? id,
-    $core.String? title,
-  }) {
-    final _result = create();
-    if (id != null) {
-      _result.id = id;
-    }
-    if (title != null) {
-      _result.title = title;
-    }
-    return _result;
-  }
-  factory Room.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Room.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  Room clone() => Room()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  Room copyWith(void Function(Room) updates) => super.copyWith((message) => updates(message as Room)) as Room; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static Room create() => Room._();
-  Room createEmptyInstance() => create();
-  static $pb.PbList<Room> createRepeated() => $pb.PbList<Room>();
-  @$core.pragma('dart2js:noInline')
-  static Room getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Room>(create);
-  static Room? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get title => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set title($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasTitle() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearTitle() => clearField(2);
-}
+import 'model.pb.dart' as $1;
 
 class CreateRoomRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateRoomRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'chatserver'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateRoomRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title')
     ..hasRequiredFields = false
   ;
@@ -118,14 +59,14 @@ class CreateRoomRequest extends $pb.GeneratedMessage {
 }
 
 class CreateRoomResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateRoomResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'chatserver'), createEmptyInstance: create)
-    ..aOM<Room>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'room', subBuilder: Room.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateRoomResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
+    ..aOM<$1.Room>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'room', subBuilder: $1.Room.create)
     ..hasRequiredFields = false
   ;
 
   CreateRoomResponse._() : super();
   factory CreateRoomResponse({
-    Room? room,
+    $1.Room? room,
   }) {
     final _result = create();
     if (room != null) {
@@ -155,19 +96,19 @@ class CreateRoomResponse extends $pb.GeneratedMessage {
   static CreateRoomResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  Room get room => $_getN(0);
+  $1.Room get room => $_getN(0);
   @$pb.TagNumber(1)
-  set room(Room v) { setField(1, v); }
+  set room($1.Room v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasRoom() => $_has(0);
   @$pb.TagNumber(1)
   void clearRoom() => clearField(1);
   @$pb.TagNumber(1)
-  Room ensureRoom() => $_ensure(0);
+  $1.Room ensureRoom() => $_ensure(0);
 }
 
 class GetRoomsRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetRoomsRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'chatserver'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetRoomsRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
@@ -196,14 +137,14 @@ class GetRoomsRequest extends $pb.GeneratedMessage {
 }
 
 class GetRoomsResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetRoomsResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'chatserver'), createEmptyInstance: create)
-    ..pc<Room>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rooms', $pb.PbFieldType.PM, subBuilder: Room.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetRoomsResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
+    ..pc<$1.Room>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rooms', $pb.PbFieldType.PM, subBuilder: $1.Room.create)
     ..hasRequiredFields = false
   ;
 
   GetRoomsResponse._() : super();
   factory GetRoomsResponse({
-    $core.Iterable<Room>? rooms,
+    $core.Iterable<$1.Room>? rooms,
   }) {
     final _result = create();
     if (rooms != null) {
@@ -233,6 +174,94 @@ class GetRoomsResponse extends $pb.GeneratedMessage {
   static GetRoomsResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<Room> get rooms => $_getList(0);
+  $core.List<$1.Room> get rooms => $_getList(0);
+}
+
+class JoinRoomRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JoinRoomRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'roomId', protoName: 'roomId')
+    ..hasRequiredFields = false
+  ;
+
+  JoinRoomRequest._() : super();
+  factory JoinRoomRequest({
+    $core.String? roomId,
+  }) {
+    final _result = create();
+    if (roomId != null) {
+      _result.roomId = roomId;
+    }
+    return _result;
+  }
+  factory JoinRoomRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory JoinRoomRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  JoinRoomRequest clone() => JoinRoomRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  JoinRoomRequest copyWith(void Function(JoinRoomRequest) updates) => super.copyWith((message) => updates(message as JoinRoomRequest)) as JoinRoomRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static JoinRoomRequest create() => JoinRoomRequest._();
+  JoinRoomRequest createEmptyInstance() => create();
+  static $pb.PbList<JoinRoomRequest> createRepeated() => $pb.PbList<JoinRoomRequest>();
+  @$core.pragma('dart2js:noInline')
+  static JoinRoomRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JoinRoomRequest>(create);
+  static JoinRoomRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get roomId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set roomId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRoomId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRoomId() => clearField(1);
+}
+
+class JoinRoomResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JoinRoomResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
+    ..pc<$1.Message>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'messages', $pb.PbFieldType.PM, subBuilder: $1.Message.create)
+    ..hasRequiredFields = false
+  ;
+
+  JoinRoomResponse._() : super();
+  factory JoinRoomResponse({
+    $core.Iterable<$1.Message>? messages,
+  }) {
+    final _result = create();
+    if (messages != null) {
+      _result.messages.addAll(messages);
+    }
+    return _result;
+  }
+  factory JoinRoomResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory JoinRoomResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  JoinRoomResponse clone() => JoinRoomResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  JoinRoomResponse copyWith(void Function(JoinRoomResponse) updates) => super.copyWith((message) => updates(message as JoinRoomResponse)) as JoinRoomResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static JoinRoomResponse create() => JoinRoomResponse._();
+  JoinRoomResponse createEmptyInstance() => create();
+  static $pb.PbList<JoinRoomResponse> createRepeated() => $pb.PbList<JoinRoomResponse>();
+  @$core.pragma('dart2js:noInline')
+  static JoinRoomResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JoinRoomResponse>(create);
+  static JoinRoomResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$1.Message> get messages => $_getList(0);
 }
 

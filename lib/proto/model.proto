@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "github.com/karamaru-alpha/chat-go-server/proto";
+package proto;
+
+message Room {
+    string id = 1;
+    string title = 2;
+}
+
+message Message {
+    string id = 1;
+    string roomId = 2;
+    string body = 3;
+}

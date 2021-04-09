@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = "github.com/karamaru-alpha/chat-go-server/proto";
+package proto;
+
+import "model.proto";
+
+message CreateRoomRequest {
+    string title = 1;
+}
+
+message CreateRoomResponse {
+    Room room = 1;
+}
+
+message GetRoomsRequest {
+}
+
+message GetRoomsResponse {
+    repeated Room rooms = 1;
+}
+
+message JoinRoomRequest {
+    string roomId = 1;
+}
+
+message JoinRoomResponse {
+    repeated Message messages = 1;
+}

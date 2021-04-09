@@ -1,7 +1,7 @@
 import 'package:grpc/grpc.dart';
 
 import '../environment/index.dart';
-import '../proto/pb/room.pbgrpc.dart';
+import '../proto/pb/service.pbgrpc.dart';
 
 ClientChannel createChannel() {
   return ClientChannel(
