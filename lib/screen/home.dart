@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../proto/pb/room.pb.dart' as pb;
+import '../proto/pb/message.pb.dart' as pb;
 import '../controller/room.dart';
 import '../service/room.dart';
 import '../state/room.dart';
 import '../model/room.dart';
-import '../provider/index.dart';
+import '../provider/room.dart';
+import 'room.dart';
 import 'add_room.dart';
 
 class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final RoomState roomState = useProvider(roomProvider.state);
-    final RoomController roomController = useProvider(roomProvider);
+    final RoomState roomState = useProvider(provider.state);
+    final RoomController roomController = useProvider(provider);
 
     useEffect(
       () {
@@ -69,7 +70,11 @@ class HomeScreen extends HookWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: null,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => RoomScreen(room: roomState.rooms[index]),
+                ),
+              ),
             ),
           );
         },
