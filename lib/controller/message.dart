@@ -9,8 +9,4 @@ class MessageController extends StateNotifier<MessageState> {
   void setMessages(List<Message> v) {
     state = state..messages = v;
   }
-
-  void addMessage(Message v) {
-    state = state..messages.add(v);
-  }
 }
