@@ -29,6 +29,7 @@ class RoomScreen extends HookWidget {
                   .toList(),
             );
           } catch (e) {
+            // TODO ハンドリングする
             return null;
           }
         })();

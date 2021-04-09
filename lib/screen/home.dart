@@ -26,6 +26,7 @@ class HomeScreen extends HookWidget {
               res.rooms.map((e) => Room(id: e.id, title: e.title)).toList(),
             );
           } catch (e) {
+            // TODO ハンドリングする
             return null;
           }
         })();
