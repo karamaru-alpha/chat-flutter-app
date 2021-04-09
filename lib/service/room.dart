@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc.dart';
 
-import '../proto/pb/room.pbgrpc.dart';
+import '../proto/pb/message.pb.dart';
+import '../proto/pb/service.pbgrpc.dart';
 import 'common.dart';
 
 Future<CreateRoomResponse> createRoom({String title}) async {
@@ -24,6 +25,19 @@ Future<GetRoomsResponse> getRooms() async {
     return await grpcClient.getRooms(GetRoomsRequest());
   } catch (e) {
     debugPrint('getRooms: $e');
+    return Future.error(e);
+  } finally {
+    channel.shutdown();
+  }
+}
+
+Future<JoinRoomResponse> joinRoom({String roomID}) async {
+  ClientChannel channel = createChannel();
+  RoomServicesClient grpcClient = createGrpcClient(channel);
+  try {
+    return await grpcClient.joinRoom(JoinRoomRequest(roomId: roomID));
+  } catch (e) {
+    debugPrint(e);
     return Future.error(e);
   } finally {
     channel.shutdown();

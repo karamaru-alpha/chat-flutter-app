@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: room.proto
+//  source: service.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
@@ -10,22 +10,28 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import 'room.pb.dart' as $0;
-export 'room.pb.dart';
+import 'message.pb.dart' as $0;
+export 'service.pb.dart';
 
 class RoomServicesClient extends $grpc.Client {
   static final _$createRoom =
       $grpc.ClientMethod<$0.CreateRoomRequest, $0.CreateRoomResponse>(
-          '/chatserver.RoomServices/CreateRoom',
+          '/proto.RoomServices/CreateRoom',
           ($0.CreateRoomRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.CreateRoomResponse.fromBuffer(value));
   static final _$getRooms =
       $grpc.ClientMethod<$0.GetRoomsRequest, $0.GetRoomsResponse>(
-          '/chatserver.RoomServices/GetRooms',
+          '/proto.RoomServices/GetRooms',
           ($0.GetRoomsRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.GetRoomsResponse.fromBuffer(value));
+  static final _$joinRoom =
+      $grpc.ClientMethod<$0.JoinRoomRequest, $0.JoinRoomResponse>(
+          '/proto.RoomServices/JoinRoom',
+          ($0.JoinRoomRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.JoinRoomResponse.fromBuffer(value));
 
   RoomServicesClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -42,10 +48,15 @@ class RoomServicesClient extends $grpc.Client {
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getRooms, request, options: options);
   }
+
+  $grpc.ResponseFuture<$0.JoinRoomResponse> joinRoom($0.JoinRoomRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$joinRoom, request, options: options);
+  }
 }
 
 abstract class RoomServicesServiceBase extends $grpc.Service {
-  $core.String get $name => 'chatserver.RoomServices';
+  $core.String get $name => 'proto.RoomServices';
 
   RoomServicesServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.CreateRoomRequest, $0.CreateRoomResponse>(
@@ -62,6 +73,13 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.GetRoomsRequest.fromBuffer(value),
         ($0.GetRoomsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.JoinRoomRequest, $0.JoinRoomResponse>(
+        'JoinRoom',
+        joinRoom_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.JoinRoomRequest.fromBuffer(value),
+        ($0.JoinRoomResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreateRoomResponse> createRoom_Pre($grpc.ServiceCall call,
@@ -74,8 +92,15 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
     return getRooms(call, await request);
   }
 
+  $async.Future<$0.JoinRoomResponse> joinRoom_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.JoinRoomRequest> request) async {
+    return joinRoom(call, await request);
+  }
+
   $async.Future<$0.CreateRoomResponse> createRoom(
       $grpc.ServiceCall call, $0.CreateRoomRequest request);
   $async.Future<$0.GetRoomsResponse> getRooms(
       $grpc.ServiceCall call, $0.GetRoomsRequest request);
+  $async.Future<$0.JoinRoomResponse> joinRoom(
+      $grpc.ServiceCall call, $0.JoinRoomRequest request);
 }

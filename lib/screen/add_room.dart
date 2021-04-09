@@ -5,13 +5,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../controller/room.dart';
 import '../model/room.dart';
 import '../service/room.dart';
-import '../proto/pb/room.pb.dart' as pb;
-import '../provider/index.dart';
+import '../proto/pb/message.pb.dart' as pb;
+import '../provider/room.dart';
 
 class AddRoomScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final RoomController controller = useProvider(roomProvider);
+    final RoomController controller = useProvider(provider);
     final ValueNotifier<String> title = useState("");
 
     return Scaffold(
