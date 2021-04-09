@@ -40,7 +40,21 @@ class AddRoomScreen extends HookWidget {
                   );
                   Navigator.of(context).pop();
                 } catch (e) {
-                  return null;
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text("エラー"),
+                        content: Text(e.toString()),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text("OK"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 }
               },
             ),

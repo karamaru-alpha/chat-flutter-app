@@ -26,8 +26,21 @@ class HomeScreen extends HookWidget {
               res.rooms.map((e) => Room(id: e.id, title: e.title)).toList(),
             );
           } catch (e) {
-            // TODO ハンドリングする
-            return null;
+            showDialog(
+              context: context,
+              builder: (_) {
+                return AlertDialog(
+                  title: Text("エラー"),
+                  content: Text(e.toString()),
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text("OK"),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ],
+                );
+              },
+            );
           }
         })();
 
