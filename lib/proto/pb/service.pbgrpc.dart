@@ -32,6 +32,12 @@ class RoomServicesClient extends $grpc.Client {
           ($0.JoinRoomRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.JoinRoomResponse.fromBuffer(value));
+  static final _$sendMessage =
+      $grpc.ClientMethod<$0.SendMessageRequest, $0.SendMessageResponse>(
+          '/proto.RoomServices/SendMessage',
+          ($0.SendMessageRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.SendMessageResponse.fromBuffer(value));
 
   RoomServicesClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -52,6 +58,12 @@ class RoomServicesClient extends $grpc.Client {
   $grpc.ResponseFuture<$0.JoinRoomResponse> joinRoom($0.JoinRoomRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$joinRoom, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SendMessageResponse> sendMessage(
+      $0.SendMessageRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$sendMessage, request, options: options);
   }
 }
 
@@ -80,6 +92,15 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.JoinRoomRequest.fromBuffer(value),
         ($0.JoinRoomResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.SendMessageRequest, $0.SendMessageResponse>(
+            'SendMessage',
+            sendMessage_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.SendMessageRequest.fromBuffer(value),
+            ($0.SendMessageResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreateRoomResponse> createRoom_Pre($grpc.ServiceCall call,
@@ -97,10 +118,17 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
     return joinRoom(call, await request);
   }
 
+  $async.Future<$0.SendMessageResponse> sendMessage_Pre($grpc.ServiceCall call,
+      $async.Future<$0.SendMessageRequest> request) async {
+    return sendMessage(call, await request);
+  }
+
   $async.Future<$0.CreateRoomResponse> createRoom(
       $grpc.ServiceCall call, $0.CreateRoomRequest request);
   $async.Future<$0.GetRoomsResponse> getRooms(
       $grpc.ServiceCall call, $0.GetRoomsRequest request);
   $async.Future<$0.JoinRoomResponse> joinRoom(
       $grpc.ServiceCall call, $0.JoinRoomRequest request);
+  $async.Future<$0.SendMessageResponse> sendMessage(
+      $grpc.ServiceCall call, $0.SendMessageRequest request);
 }
