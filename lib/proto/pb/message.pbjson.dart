@@ -65,3 +65,21 @@ const JoinRoomResponse$json = const {
 
 /// Descriptor for `JoinRoomResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List joinRoomResponseDescriptor = $convert.base64Decode('ChBKb2luUm9vbVJlc3BvbnNlEioKCG1lc3NhZ2VzGAEgAygLMg4ucHJvdG8uTWVzc2FnZVIIbWVzc2FnZXM=');
+@$core.Deprecated('Use sendMessageRequestDescriptor instead')
+const SendMessageRequest$json = const {
+  '1': 'SendMessageRequest',
+  '2': const [
+    const {'1': 'roomId', '3': 1, '4': 1, '5': 9, '10': 'roomId'},
+    const {'1': 'body', '3': 2, '4': 1, '5': 9, '10': 'body'},
+  ],
+};
+
+/// Descriptor for `SendMessageRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List sendMessageRequestDescriptor = $convert.base64Decode('ChJTZW5kTWVzc2FnZVJlcXVlc3QSFgoGcm9vbUlkGAEgASgJUgZyb29tSWQSEgoEYm9keRgCIAEoCVIEYm9keQ==');
+@$core.Deprecated('Use sendMessageResponseDescriptor instead')
+const SendMessageResponse$json = const {
+  '1': 'SendMessageResponse',
+};
+
+/// Descriptor for `SendMessageResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List sendMessageResponseDescriptor = $convert.base64Decode('ChNTZW5kTWVzc2FnZVJlc3BvbnNl');
