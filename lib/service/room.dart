@@ -37,7 +37,21 @@ Future<JoinRoomResponse> joinRoom({String roomID}) async {
   try {
     return await grpcClient.joinRoom(JoinRoomRequest(roomId: roomID));
   } catch (e) {
-    debugPrint(e);
+    debugPrint('joinRoom: $e');
+    return Future.error(e);
+  } finally {
+    channel.shutdown();
+  }
+}
+
+Future<SendMessageResponse> sendMessage({String roomID, String body}) async {
+  ClientChannel channel = createChannel();
+  RoomServicesClient grpcClient = createGrpcClient(channel);
+  try {
+    return await grpcClient
+        .sendMessage(SendMessageRequest(roomId: roomID, body: body));
+  } catch (e) {
+    debugPrint('sendMessage: $e');
     return Future.error(e);
   } finally {
     channel.shutdown();
