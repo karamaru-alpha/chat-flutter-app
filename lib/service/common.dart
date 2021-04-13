@@ -14,10 +14,5 @@ ClientChannel createChannel() {
 }
 
 RoomServicesClient createGrpcClient(ClientChannel channel) {
-  return RoomServicesClient(
-    channel,
-    options: CallOptions(
-      timeout: Duration(seconds: 10),
-    ),
-  );
+  return RoomServicesClient(channel);
 }

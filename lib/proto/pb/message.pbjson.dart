@@ -59,12 +59,12 @@ final $typed_data.Uint8List joinRoomRequestDescriptor = $convert.base64Decode('C
 const JoinRoomResponse$json = const {
   '1': 'JoinRoomResponse',
   '2': const [
-    const {'1': 'messages', '3': 1, '4': 3, '5': 11, '6': '.proto.Message', '10': 'messages'},
+    const {'1': 'message', '3': 1, '4': 1, '5': 11, '6': '.proto.Message', '10': 'message'},
   ],
 };
 
 /// Descriptor for `JoinRoomResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List joinRoomResponseDescriptor = $convert.base64Decode('ChBKb2luUm9vbVJlc3BvbnNlEioKCG1lc3NhZ2VzGAEgAygLMg4ucHJvdG8uTWVzc2FnZVIIbWVzc2FnZXM=');
+final $typed_data.Uint8List joinRoomResponseDescriptor = $convert.base64Decode('ChBKb2luUm9vbVJlc3BvbnNlEigKB21lc3NhZ2UYASABKAsyDi5wcm90by5NZXNzYWdlUgdtZXNzYWdl');
 @$core.Deprecated('Use sendMessageRequestDescriptor instead')
 const SendMessageRequest$json = const {
   '1': 'SendMessageRequest',

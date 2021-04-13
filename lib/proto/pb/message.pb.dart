@@ -226,17 +226,17 @@ class JoinRoomRequest extends $pb.GeneratedMessage {
 
 class JoinRoomResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JoinRoomResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto'), createEmptyInstance: create)
-    ..pc<$1.Message>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'messages', $pb.PbFieldType.PM, subBuilder: $1.Message.create)
+    ..aOM<$1.Message>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'message', subBuilder: $1.Message.create)
     ..hasRequiredFields = false
   ;
 
   JoinRoomResponse._() : super();
   factory JoinRoomResponse({
-    $core.Iterable<$1.Message>? messages,
+    $1.Message? message,
   }) {
     final _result = create();
-    if (messages != null) {
-      _result.messages.addAll(messages);
+    if (message != null) {
+      _result.message = message;
     }
     return _result;
   }
@@ -262,7 +262,15 @@ class JoinRoomResponse extends $pb.GeneratedMessage {
   static JoinRoomResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$1.Message> get messages => $_getList(0);
+  $1.Message get message => $_getN(0);
+  @$pb.TagNumber(1)
+  set message($1.Message v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasMessage() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearMessage() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.Message ensureMessage() => $_ensure(0);
 }
 
 class SendMessageRequest extends $pb.GeneratedMessage {
