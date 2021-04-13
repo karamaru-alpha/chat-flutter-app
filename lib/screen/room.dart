@@ -4,9 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../service/room.dart';
 import '../model/room.dart';
-import '../model/message.dart';
 import '../provider/message.dart';
-import '../proto/pb/message.pb.dart' as pb;
 
 class RoomScreen extends HookWidget {
   RoomScreen({Key key, this.room}) : super(key: key);
@@ -21,15 +19,13 @@ class RoomScreen extends HookWidget {
 
     useEffect(
       () {
+        Future.microtask(() => messageController.resetMessage());
         (() async {
           try {
-            pb.JoinRoomResponse res = await joinRoom(roomID: room.id);
-            messageController.setMessages(
-              res.messages
-                  .map((e) => Message(id: e.id, roomID: e.roomId, body: e.body))
-                  .toList(),
-            );
+            await joinRoom(
+                roomID: room.id, addMessage: messageController.addMessage);
           } catch (e) {
+            debugPrint(e.toString());
             showDialog(
               context: context,
               builder: (_) {
@@ -57,108 +53,109 @@ class RoomScreen extends HookWidget {
       appBar: AppBar(
         title: Text(room.title),
       ),
-      body: Stack(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          ListView.builder(
-            itemCount: messageState.messages.length,
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            itemBuilder: (context, index) {
-              return Container(
-                padding:
-                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.grey.shade200,
+          Flexible(
+            child: ListView.builder(
+              reverse: true,
+              itemCount: messageState.messages.length,
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              itemBuilder: (context, index) {
+                return Container(
+                  padding:
+                      EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.grey.shade200,
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      messageState.messages.reversed.toList()[index].body,
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    messageState.messages[index].body,
-                    style: TextStyle(fontSize: 15),
+                );
+              },
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+            height: 60,
+            width: double.infinity,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
                 ),
-              );
-            },
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
-              height: 60,
-              width: double.infinity,
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: _textFieldController,
+                    decoration: InputDecoration(
+                        hintText: "Write message...",
+                        hintStyle: TextStyle(color: Colors.black54),
+                        border: InputBorder.none),
                   ),
-                  SizedBox(
-                    width: 15,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                FloatingActionButton(
+                  onPressed: () async {
+                    if (_textFieldController.text.length == 0) {
+                      return;
+                    }
+                    try {
+                      await sendMessage(
+                          roomID: room.id, body: _textFieldController.text);
+                    } catch (e) {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text("エラー"),
+                            content: Text(e.toString()),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text("OK"),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } finally {
+                      FocusScope.of(context).unfocus();
+                      _textFieldController.clear();
+                    }
+                  },
+                  child: Icon(
+                    Icons.send,
+                    color: Colors.white,
+                    size: 18,
                   ),
-                  Expanded(
-                    child: TextField(
-                      controller: _textFieldController,
-                      decoration: InputDecoration(
-                          hintText: "Write message...",
-                          hintStyle: TextStyle(color: Colors.black54),
-                          border: InputBorder.none),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () async {
-                      if (_textFieldController.text.length == 0) {
-                        return;
-                      }
-                      try {
-                        await sendMessage(
-                            roomID: room.id, body: _textFieldController.text);
-                      } catch (e) {
-                        showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text("エラー"),
-                              content: Text(e.toString()),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text("OK"),
-                                  onPressed: () => Navigator.pop(context),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      } finally {
-                        FocusScope.of(context).unfocus();
-                        _textFieldController.clear();
-                      }
-                    },
-                    child: Icon(
-                      Icons.send,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    backgroundColor: Colors.blue,
-                    elevation: 0,
-                  ),
-                ],
-              ),
+                  backgroundColor: Colors.blue,
+                  elevation: 0,
+                ),
+              ],
             ),
           ),
         ],
