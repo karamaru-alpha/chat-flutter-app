@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc.dart';
 
+import '../model/message.dart';
 import '../proto/pb/message.pb.dart';
 import '../proto/pb/service.pbgrpc.dart';
 import 'common.dart';
@@ -31,11 +32,21 @@ Future<GetRoomsResponse> getRooms() async {
   }
 }
 
-Future<JoinRoomResponse> joinRoom({String roomID}) async {
+Future<Error> joinRoom({String roomID, Function addMessage}) async {
   ClientChannel channel = createChannel();
   RoomServicesClient grpcClient = createGrpcClient(channel);
   try {
-    return await grpcClient.joinRoom(JoinRoomRequest(roomId: roomID));
+    final stream = grpcClient.joinRoom(JoinRoomRequest(roomId: roomID));
+    await for (final res in stream) {
+      addMessage(
+        Message(
+          id: res.message.id,
+          roomID: res.message.roomId,
+          body: res.message.body,
+        ),
+      );
+    }
+    return Future.error(null);
   } catch (e) {
     debugPrint('joinRoom: $e');
     return Future.error(e);
