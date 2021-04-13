@@ -55,9 +55,11 @@ class RoomServicesClient extends $grpc.Client {
     return $createUnaryCall(_$getRooms, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.JoinRoomResponse> joinRoom($0.JoinRoomRequest request,
+  $grpc.ResponseStream<$0.JoinRoomResponse> joinRoom($0.JoinRoomRequest request,
       {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$joinRoom, request, options: options);
+    return $createStreamingCall(
+        _$joinRoom, $async.Stream.fromIterable([request]),
+        options: options);
   }
 
   $grpc.ResponseFuture<$0.SendMessageResponse> sendMessage(
@@ -89,7 +91,7 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
         'JoinRoom',
         joinRoom_Pre,
         false,
-        false,
+        true,
         ($core.List<$core.int> value) => $0.JoinRoomRequest.fromBuffer(value),
         ($0.JoinRoomResponse value) => value.writeToBuffer()));
     $addMethod(
@@ -113,9 +115,9 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
     return getRooms(call, await request);
   }
 
-  $async.Future<$0.JoinRoomResponse> joinRoom_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.JoinRoomRequest> request) async {
-    return joinRoom(call, await request);
+  $async.Stream<$0.JoinRoomResponse> joinRoom_Pre($grpc.ServiceCall call,
+      $async.Future<$0.JoinRoomRequest> request) async* {
+    yield* joinRoom(call, await request);
   }
 
   $async.Future<$0.SendMessageResponse> sendMessage_Pre($grpc.ServiceCall call,
@@ -127,7 +129,7 @@ abstract class RoomServicesServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.CreateRoomRequest request);
   $async.Future<$0.GetRoomsResponse> getRooms(
       $grpc.ServiceCall call, $0.GetRoomsRequest request);
-  $async.Future<$0.JoinRoomResponse> joinRoom(
+  $async.Stream<$0.JoinRoomResponse> joinRoom(
       $grpc.ServiceCall call, $0.JoinRoomRequest request);
   $async.Future<$0.SendMessageResponse> sendMessage(
       $grpc.ServiceCall call, $0.SendMessageRequest request);
