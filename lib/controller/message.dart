@@ -6,7 +6,11 @@ import '../model/message.dart';
 class MessageController extends StateNotifier<MessageState> {
   MessageController() : super(MessageState());
 
-  void setMessages(List<Message> v) {
-    state = state..messages = v;
+  void resetMessage() {
+    state = state..messages = [];
+  }
+
+  void addMessage(Message v) {
+    state = state..messages.add(v);
   }
 }
