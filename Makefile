@@ -1,6 +1,6 @@
 .PHONY: run
 run:
-	flutter run --dart-define=PORT=8080 --dart-define=HOST='localhost'
+	flutter run -d all --dart-define=PORT=8080 --dart-define=HOST='localhost'
 
 .PHONY: gen_proto
 gen_proto:
